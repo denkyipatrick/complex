@@ -1,0 +1,15 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t privoas/client-test -f ./client/Dockerfile.dev ./client
+
+scripts:
+  - docker run -e CI=true privoas/client-test npm run test
+
+after_success:
+  - docker build -t privoas/client-production ./client
+  - docker build -t privoas/nginx-production ./nginx
+  - docker build -t privoas/worker-production ./worker
+  - docker build -t privoas/server-production ./server

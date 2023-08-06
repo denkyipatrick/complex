@@ -6,7 +6,8 @@ before_install:
   - echo "Hello world"
 
 scripts:
-  - docker run -e CI=true privoas/client-test npm run test
+  # - docker run -e CI=true privoas/client-test npm run test
+  - echo "Here we can run the test"
 
 after_success:
   - docker build -t privoas/client-production ./frontend

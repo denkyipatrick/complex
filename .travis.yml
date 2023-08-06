@@ -10,13 +10,13 @@ scripts:
   - echo "Here we can run the test"
 
 after_success:
-  - docker build -t privoas/client-production ./frontend
+  - docker build -t privoas/frontend-production ./frontend
   - docker build -t privoas/nginx-production ./nginx
   - docker build -t privoas/worker-production ./worker
   - docker build -t privoas/server-production ./server
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push privoas/client-production
-  - docker push privoas/ngninx-production
+  - docker push privoas/frontend-production
+  - docker push privoas/nginx-production
   - docker push privoas/worker-production
   - docker push privoas/server-production
